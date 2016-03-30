@@ -79,3 +79,19 @@ RSpec.describe "an array" do
       expect(["hello", "gold"].include?("gold")).to be true
     end
 end
+
+
+require "json"
+nodes = ["riak@node1", "riak@node7", "riak@node5"]
+
+RSpec.describe "an array" do
+    # too simple a test in order to tell for sure
+    # different platforms or character encodings
+    it "sorts strings with numbers numerically correct" do
+      expect(nodes.sort).to eq(["riak@node1", "riak@node5", "riak@node7"])
+    end
+
+    it "is convertable to a json array" do
+      expect(nodes.to_json).to eq('["riak@node1","riak@node7","riak@node5"]')
+    end
+end
