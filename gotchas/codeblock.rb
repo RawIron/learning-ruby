@@ -51,3 +51,22 @@ RSpec.describe Racing::Track do
   end
 end
 
+
+## nested modules
+## reference function inside it
+
+module Racing
+	module Util
+	def Util.log
+		"got logged"
+	end
+	end
+end
+
+RSpec.describe Racing::Util do
+  describe "#log" do
+    it "returns confirmation" do
+      expect(Racing::Util.log).to eq("got logged")
+    end
+  end
+end

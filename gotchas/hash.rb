@@ -40,20 +40,42 @@ RSpec.describe "animals array" do
 end
 
 
-RSpec.describe "an array" do
-    it "is not identical to another array when types do not match" do
-      expect([1,3] === ["1","3"]).to be false
-    end
-end
-
 
 instances = {"goof" => {:ipaddress => "128.0.0.0"}}
 
-RSpec.describe "instances nested hash" do
-    it "extracts key and value as a pair" do
+RSpec.describe "a nested hash" do
+    it "is iterable over key and value pairs" do
       instances.each do |name, instance|
         expect(name).to eq("goof")
         expect(instance[:ipaddress]).to eq("128.0.0.0")
       end
+    end
+end
+
+
+a = [{:name => "go", :cost => 3}, {:name => "fast", :cost => 4}]
+
+RSpec.describe "an array of hashes" do
+    it "is iterable over hashes" do
+      a.take(1).each do |h|
+        expect(h[:cost]).to eq(3)
+      end
+    end
+end
+
+
+RSpec.describe "an array" do
+    it "is iterable once for a single nil element" do
+      [nil].each do |elem|
+        expect(elem).to be nil
+      end
+    end
+
+    it "is not identical to another array when types do not match" do
+      expect([1,3] === ["1","3"]).to be false
+    end
+
+    it "is searchable and evaluates to true for equal strings" do
+      expect(["hello", "gold"].include?("gold")).to be true
     end
 end
