@@ -1,6 +1,6 @@
 machines = {"ip" => "20.2", "group" => "riak", :ip => "40.4"}
 
-RSpec.describe "machines hash" do
+RSpec.describe "a hash" do
     it "finds a key string" do
       expect(machines["ip"]).to eq("20.2")
     end
@@ -17,7 +17,7 @@ end
 
 animals = ["bear", "snake", "whale"]
 
-RSpec.describe "animals array" do
+RSpec.describe "an array" do
     it "is equal to an array with same values in same order" do
       expect(animals).to eq(["bear", "snake", "whale"])
     end
@@ -85,8 +85,8 @@ require "json"
 nodes = ["riak@node1", "riak@node7", "riak@node5"]
 
 RSpec.describe "an array" do
-    # too simple a test in order to tell for sure
-    # different platforms or character encodings
+    # test is too simple to tell for sure
+    # for example different platforms or character encodings
     it "sorts strings with numbers numerically correct" do
       expect(nodes.sort).to eq(["riak@node1", "riak@node5", "riak@node7"])
     end
@@ -95,3 +95,30 @@ RSpec.describe "an array" do
       expect(nodes.to_json).to eq('["riak@node1","riak@node7","riak@node5"]')
     end
 end
+
+
+RSpec.describe "a hash" do
+    it "overwrites values with equal keys" do
+      expect({:name => "bat", :name => "ant"}[:name]).to eq("ant")
+    end
+
+    it "indexes a value with a key" do
+      nginx = {:name => "user-service"}
+      expect(nginx[:name]).to eq("user-service")
+    end
+
+    it "is mutable and new key-value pairs can be added" do
+      nginx = {}
+      nginx[:name] = "user-service"
+      expect(nginx[:name]).to eq("user-service")
+    end
+
+    it "must be tested for emptiness with a method call" do
+      expect({}.empty?).to be true
+    end
+
+    it "can be nested" do
+      expect({:root => {:between => {:leaf => 4}}}[:root][:between][:leaf]).to eq(4)
+    end
+end
+

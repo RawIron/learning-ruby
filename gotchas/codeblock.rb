@@ -70,3 +70,27 @@ RSpec.describe Racing::Util do
     end
   end
 end
+
+
+module Nginx
+	def self.configure(value)
+		value
+	end
+	def self.restart
+		"restarted"
+	end
+end
+
+RSpec.describe Nginx do
+  describe "#configure" do
+    it "is accessed by ::" do
+      expect(Nginx::configure("connect")).to eq("connect")
+    end
+  end
+
+  describe "#restart" do
+    it "is accessed by ." do
+      expect(Nginx.restart).to eq("restarted")
+    end
+  end
+end
