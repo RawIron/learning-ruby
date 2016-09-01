@@ -1,0 +1,8 @@
+language: ruby
+
+
+install:
+  - gem install rspec
+
+
+script: rspec gotchas/*

@@ -1,5 +1,7 @@
 ## Quick Ruby hacks
 
+[![Build Status](https://travis-ci.org/RawIron/scratch-ruby.svg)](https://travis-ci.org/RawIron/scratch-ruby)
+
 ### gotchas
 * test language semantics
 * test short recipes
@@ -15,11 +17,11 @@ install and init Ruby RSpec >= 2.1
 ```
 sudo gem install rspec
 
-# inside the gotchas folder
+# from the repo root
 rspec --init
 ```
 
 run all tests with
 ```
-rspec *
+rspec gotchas/*
 ```
